@@ -1,5 +1,8 @@
+$:.unshift File.dirname(__FILE__) + "/../rack/lib"
+
 require 'rack'
 require 'rack/showexceptions'
+require_relative 'server'
 
 class Object
   def meta_def(method, &b)
@@ -8,7 +11,7 @@ class Object
 
     # Defines a method on that class
     singleton_clazz.send(:define_method, method, &b)
-end 
+  end 
 end 
 
 module MagicMVC 
@@ -28,15 +31,5 @@ module MagicMVC
     end 
   end 
 
-  class Server < Rack::Server
-    def call(env)
-      [200, {'Content-Type' => 'text/plain'}, ['I will be a big strong app someday!']]
-    end 
-  end 
 end
-
-Rack::Server.start(
-  :app => Rack::ShowExceptions.new(Rack::Lint.new(MagicMVC::Server.new)), :Port => 3333
-)
-
 
