@@ -3,7 +3,7 @@ require_relative 'magic_mvc'
 MagicMVC.run :Example
 
 module Example::Controllers
-  class Index < R '/boo'
+  class Index 
     def get
       Time.now.to_s
     end
