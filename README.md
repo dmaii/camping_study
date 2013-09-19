@@ -1,4 +1,4 @@
-magic_mvc
+camping_study
 =========
 
 a study of the camping framework
